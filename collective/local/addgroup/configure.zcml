@@ -1,0 +1,27 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           i18n_domain="addgroup">
+
+  <i18n:registerTranslations directory="locales" />
+
+  <include package="plone.app.controlpanel" />
+
+  <browser:page
+      name="add-new-group"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      class=".AddGroupForm"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      />
+
+  <browser:viewlet
+      name="plone.addgroupinsharing"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".AddGroupInSharing"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      view="plone.app.workflow.browser.sharing.SharingView"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      />
+
+</configure>
