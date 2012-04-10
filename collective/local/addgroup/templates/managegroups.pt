@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plone"
+      tal:omit-tag=""
+      tal:define="here_url context/absolute_url;
+                  groupicon string:${context/@@plone_portal_state/portal_url}/group.gif">
+    <style type="text/css">
+      #content #groups-list {
+        margin: 0 0 0 1em;
+        padding: 0;
+      }
+      #groups-list li {
+        list-style: none;
+      }
+    </style>
+
+    <h2 i18n:translate="label_groups">Groups</h2>
+    <div tal:content="structure view/content|nothing" />
+    <ul id="groups-list">
+      <li tal:repeat="group view/groups">
+        <tal:group
+            tal:define="groupname group/getId;
+                        grouplabel python:group.getProperty('title', groupname)">
+            <img tal:attributes="src groupicon" />
+            <a
+               tal:attributes="href string:${here_url}/@@manage-members?groupname=${groupname}"
+               tal:content="grouplabel"></a>
+             (<tal:groupid content="groupname" />)
+             (<tal:num content="python:len(group.getGroupMemberIds())" />)
+        </tal:group>
+      </li>
+    </ul>
+
+</html>

@@ -5,6 +5,7 @@ from zope.i18nmessageid import MessageFactory
 from zope.i18n import translate
 from zope.annotation.interfaces import IAnnotations
 
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import normalizeString, safe_unicode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -14,13 +15,25 @@ from plone.app.layout.viewlets.common import ViewletBase
 PMF = MessageFactory('plone')
 _ = MessageFactory('addgroup')
 
+ANNOTATION_KEY = 'collective.local.addgroup.groups'
+
 
 class AddGroupInSharing(ViewletBase):
 
     def update(self):
-        pass
+        gtool = getToolByName(self.context, 'portal_groups')
+        annotations = IAnnotations(self.context)
+        groups = annotations.get(ANNOTATION_KEY, ())
+        self.groups = []
+        for gid in groups:
+            g = gtool.getGroupById(gid)
+            if g is not None:
+                self.groups.append(g)
 
-    def render(self):
+        self.groups.sort(key=lambda g: normalizeString(g.getProperty('title'),
+                                                       context=self.context))
+
+    def content(self):
         return u"""
 <script type="text/javascript">
   jQuery(document).ready(function(){
@@ -37,8 +50,6 @@ class AddGroupInSharing(ViewletBase):
                 '%s/@@add-new-group' % self.context.absolute_url(),
                 translate(PMF(u"label_add_new_group", default=u"Add New Group"),
                     context=self.request))
-
-ANNOTATION_KEY = 'collective.local.addgroup.groups'
 
 class AddGroupForm(GroupDetailsControlPanel):
 

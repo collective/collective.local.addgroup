@@ -23,6 +23,15 @@
       for="collective.local.addgroup.interfaces.IAddNewGroup"
       view="plone.app.workflow.browser.sharing.SharingView"
       permission="plone.app.controlpanel.UsersAndGroups"
+      template="templates/managegroups.pt"
+      />
+
+  <browser:page
+      name="manage-members"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      class=".members.ManageMembers"
+      permission="zope2.ManageUsers"
+      template="templates/managemembers.pt"
       />
 
 </configure>
