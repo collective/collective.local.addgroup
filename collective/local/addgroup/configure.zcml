@@ -13,6 +13,7 @@
       for="collective.local.addgroup.interfaces.IAddNewGroup"
       class=".AddGroupForm"
       permission="plone.app.controlpanel.UsersAndGroups"
+      template="usergroups_groupdetails.pt"
       />
 
   <browser:viewlet
