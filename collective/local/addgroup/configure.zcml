@@ -12,7 +12,7 @@
       name="add-new-group"
       for="collective.local.addgroup.interfaces.IAddNewGroup"
       class=".AddGroupForm"
-      permission="plone.app.controlpanel.UsersAndGroups"
+      permission="zope2.ManageUsers"
       template="usergroups_groupdetails.pt"
       />
 
@@ -22,7 +22,7 @@
       class=".AddGroupInSharing"
       for="collective.local.addgroup.interfaces.IAddNewGroup"
       view="plone.app.workflow.browser.sharing.SharingView"
-      permission="plone.app.controlpanel.UsersAndGroups"
+      permission="zope2.ManageUsers"
       template="templates/managegroups.pt"
       />
 
