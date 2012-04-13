@@ -25,11 +25,14 @@
             tal:define="groupname group/getId;
                         grouplabel python:group.getProperty('title', groupname)">
             <img tal:attributes="src groupicon" />
-            <a
-               tal:attributes="href string:${here_url}/@@manage-members?groupname=${groupname}"
-               tal:content="grouplabel"></a>
-             (<tal:groupid content="groupname" />)
-             (<tal:num content="python:len(group.getGroupMemberIds())" />)
+            <a tal:attributes="href string:${here_url}/@@manage-members?groupname=${groupname}">
+              <tal:label condition="grouplabel"
+                         content="string:$grouplabel ($groupname)" />
+              <tal:label condition="not:grouplabel"
+                         content="groupname" />
+            </a>
+            (<tal:num content="python:len(group.getGroupMemberIds())" />)
+
         </tal:group>
       </li>
     </ul>
