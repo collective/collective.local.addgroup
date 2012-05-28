@@ -24,6 +24,7 @@ setup(name='collective.local.addgroup',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'collective.local.adduser',
           'plone.app.users > 1.0.6',  # >= 1.1 for Plone 4.1, > 1.0.6 for Plone 4.0
           'plone.app.workflow >= 2.0.2',
       ],

@@ -1,9 +1,11 @@
 import pkg_resources
 from persistent.list import PersistentList
 
+from zope.schema.interfaces import IVocabularyFactory
 from zope.i18nmessageid import MessageFactory
 from zope.i18n import translate
 from zope.annotation.interfaces import IAnnotations
+from zope.component import getUtility
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import normalizeString, safe_unicode
@@ -51,6 +53,7 @@ class AddGroupInSharing(ViewletBase):
                 translate(PMF(u"label_add_new_group", default=u"Add New Group"),
                     context=self.request))
 
+
 class AddGroupForm(GroupDetailsControlPanel):
 
 #    index = ViewPageTemplateFile(
@@ -74,4 +77,13 @@ class AddGroupForm(GroupDetailsControlPanel):
             if groupname not in groups:
                 groups.append(groupname)
 
+            roles = self.request.form.get('localroles', [])
+            if roles:
+                self.context.manage_setLocalRoles(groupname, roles)
+                self.context.reindexObjectSecurity()
+
         return result
+
+    def roles(self):
+        vocabulary = getUtility(IVocabularyFactory, 'LocalRoles')
+        return vocabulary(self.context)
