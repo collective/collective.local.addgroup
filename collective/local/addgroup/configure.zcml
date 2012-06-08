@@ -18,12 +18,12 @@
 
   <browser:resource
       name="addgroup.gif"
-      file="add.gif"
+      file="addgroup.gif"
       />
   
   <browser:resource
       name="delgroup.gif"
-      file="del.gif"
+      file="delgroup.gif"
       />
   
   <browser:page
