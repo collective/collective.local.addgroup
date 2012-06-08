@@ -1,4 +1,5 @@
 import pkg_resources
+from AccessControl import getSecurityManager
 from persistent.list import PersistentList
 
 from zope.schema.interfaces import IVocabularyFactory
@@ -20,12 +21,24 @@ _ = MessageFactory('addgroup')
 ANNOTATION_KEY = 'collective.local.addgroup.groups'
 
 
+def addGroup(groupid, context):
+    annotations = IAnnotations(context)
+    groups = annotations.setdefault(ANNOTATION_KEY, PersistentList())
+    if groupid not in groups:
+        groups.append(groupid)
+
+
+def getGroupIds(context):
+    annotations = IAnnotations(context)
+    groups = annotations.get(ANNOTATION_KEY, ())
+    return tuple(groups)
+
+
 class AddGroupInSharing(ViewletBase):
 
     def update(self):
         gtool = getToolByName(self.context, 'portal_groups')
-        annotations = IAnnotations(self.context)
-        groups = annotations.get(ANNOTATION_KEY, ())
+        groups = getGroupIds(self.context)
         self.groups = []
         for gid in groups:
             g = gtool.getGroupById(gid)
@@ -36,6 +49,10 @@ class AddGroupInSharing(ViewletBase):
                                                        context=self.context))
 
     def content(self):
+        sm = getSecurityManager()
+        if not sm.checkPermission('Add Groups', self.context):
+            return u""
+
         return u"""
 <script type="text/javascript">
   jQuery(document).ready(function(){
@@ -71,11 +88,8 @@ class AddGroupForm(GroupDetailsControlPanel):
         if submitted and self.group and not self.groupname:
             target_url = self.context.absolute_url() + "/@@sharing"
             self.request.response.redirect(target_url)
-            annotations = IAnnotations(self.context)
-            groups = annotations.setdefault(ANNOTATION_KEY, PersistentList())
             groupname = self.group.getId()
-            if groupname not in groups:
-                groups.append(groupname)
+            addGroup(groupname, self.context)
 
             roles = self.request.form.get('localroles', [])
             if roles:
