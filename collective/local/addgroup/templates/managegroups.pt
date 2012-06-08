@@ -16,7 +16,7 @@
         list-style: none;
       }
     </style>
-
+    <div id="manage-groups">
     <h2 i18n:translate="label_groups">Groups</h2>
     <div tal:content="structure view/content|nothing" />
     <ul id="groups-list">
@@ -36,5 +36,6 @@
         </tal:group>
       </li>
     </ul>
+  </div>
 
 </html>
