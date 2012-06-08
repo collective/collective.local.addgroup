@@ -15,6 +15,16 @@
       id="plone.AddGroups"
       title="Add Groups"
       />
+
+  <browser:resource
+      name="addgroup.gif"
+      file="add.gif"
+      />
+  
+  <browser:resource
+      name="delgroup.gif"
+      file="del.gif"
+      />
   
   <browser:page
       name="add-new-group"
@@ -22,6 +32,20 @@
       class=".AddGroupForm"
       permission="plone.AddGroups"
       template="usergroups_groupdetails.pt"
+      />
+  
+  <browser:page
+      name="add-group-to-list"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      class=".AddGroupToList"
+      permission="plone.AddGroups"
+      />
+
+  <browser:page
+      name="remove-group-from-list"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      class=".RemoveGroupFromList"
+      permission="plone.AddGroups"
       />
 
   <browser:viewlet

@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      i18n:domain="plone"
+      i18n:domain="addgroup"
       tal:omit-tag=""
       tal:define="here_url context/absolute_url;
                   groupicon string:${context/@@plone_portal_state/portal_url}/group.gif">
@@ -17,14 +17,23 @@
       }
     </style>
     <div id="manage-groups">
-    <h2 i18n:translate="label_groups">Groups</h2>
+    <h2 i18n:translate="label_groups"
+      i18n:domain="plone">Groups</h2>
     <div tal:content="structure view/content|nothing" />
     <ul id="groups-list">
       <li tal:repeat="group view/groups">
         <tal:group
             tal:define="groupname group/getId;
                         grouplabel python:group.getProperty('title', groupname)">
-            <img tal:attributes="src groupicon" />
+            <img tal:attributes="src groupicon"
+                 tal:condition="not:view/can_manage_groups" />
+            <a tal:condition="view/can_manage_groups"
+              tal:attributes="href string:${here_url}/@@remove-group-from-list?groupname=${groupname}">
+              <img title="Remove from managed groups" i18n:attributes="title"
+                  src="del.gif"
+                  tal:attributes="src string:${here_url}/++resource++delgroup.gif"
+                  />
+            </a>
             <a tal:attributes="href string:${here_url}/@@manage-members?groupname=${groupname}">
               <tal:label condition="grouplabel"
                          content="string:$grouplabel ($groupname)" />
@@ -32,7 +41,6 @@
                          content="groupname" />
             </a>
             (<tal:num content="python:len(group.getGroupMemberIds())" />)
-
         </tal:group>
       </li>
     </ul>

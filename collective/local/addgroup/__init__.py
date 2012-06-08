@@ -11,6 +11,7 @@ from zope.component import getUtility
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import normalizeString, safe_unicode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.Five import BrowserView
 
 from plone.app.controlpanel.usergroups import GroupDetailsControlPanel
 from plone.app.layout.viewlets.common import ViewletBase
@@ -26,6 +27,13 @@ def addGroup(groupid, context):
     groups = annotations.setdefault(ANNOTATION_KEY, PersistentList())
     if groupid not in groups:
         groups.append(groupid)
+
+
+def removeGroup(groupid, context):
+    annotations = IAnnotations(context)
+    groups = annotations.get(ANNOTATION_KEY, ())
+    if groupid in groups:
+        groups.remove(groupid)
 
 
 def getGroupIds(context):
@@ -47,6 +55,8 @@ class AddGroupInSharing(ViewletBase):
 
         self.groups.sort(key=lambda g: normalizeString(g.getProperty('title'),
                                                        context=self.context))
+        self.can_manage_groups = getSecurityManager().checkPermission(
+                'Add Groups', self.context)
 
     def content(self):
         sm = getSecurityManager()
@@ -63,12 +73,52 @@ class AddGroupInSharing(ViewletBase):
       noform: function(el) {return jQuery.plonepopups.noformerrorshow(el, 'redirect');},
       redirect: function () {return location.href;}
     });
+    if (jQuery('#new-group-link')) {
+        jQuery('#user-group-sharing-settings input[name=entries.type:records][value=group]').each(function() {
+            value = jQuery(this).siblings('input[name=entries.id:records]').attr('value');
+            if (value != 'AuthenticatedUsers') {
+                if (jQuery("#groups-list a[href$=groupname="+value+"]").length == 0) {
+                    html = '<a href="@@add-group-to-list?groupname='+value+'"><img src="'+portal_url+'/++resource++addgroup.gif" title="%s" /></a>'
+                    img = jQuery(this).siblings('img');
+                    jQuery(html).insertAfter(img);
+                    img.remove();
+                }
+            }
+        });
+    }
   });
 </script>
 <p><a href="%s" id="new-group-link">%s</a></p>""" % (
+                translate(_(u"Add to managed groups"),
+                    context=self.request),
                 '%s/@@add-new-group' % self.context.absolute_url(),
                 translate(PMF(u"label_add_new_group", default=u"Add New Group"),
-                    context=self.request))
+                    context=self.request),
+                )
+
+
+class AddGroupToList(BrowserView):
+    def __call__(self):
+        form = self.request.form
+        if 'groupname' in form:
+            groupname = form['groupname']
+            gtool = getToolByName(self.context, 'portal_groups')
+            g = gtool.getGroupById(groupname)
+            if g is not None:
+                addGroup(groupname, self.context)
+
+        target_url = self.context.absolute_url() + "/@@sharing"
+        self.request.response.redirect(target_url)
+
+
+class RemoveGroupFromList(BrowserView):
+    def __call__(self):
+        form = self.request.form
+        if 'groupname' in form:
+            groupname = form['groupname']
+            removeGroup(groupname, self.context)
+        target_url = self.context.absolute_url() + "/@@sharing"
+        self.request.response.redirect(target_url)
 
 
 class AddGroupForm(GroupDetailsControlPanel):

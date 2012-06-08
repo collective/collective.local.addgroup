@@ -1,0 +1,25 @@
+# Vincent Fretin <vincent.fretin@gmail.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: addgroupN\n"
+"POT-Creation-Date: 2012-06-08 19:18+0000\n"
+"PO-Revision-Date: 2012-06-08 21:18+0100\n"
+"Last-Translator: Vincent Fretin <vincent.fretin@gmail.com>\n"
+"Language-Team: Vincent Fretin <vincent.fretin@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: fr\n"
+"Language-Name: French\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: addgroup\n"
+
+#: ../__init__.py:90
+msgid "Add to managed groups"
+msgstr "Ajouter aux groupes gérés"
+
+#: ../templates/managegroups.pt:38
+msgid "Remove from managed groups"
+msgstr "Supprimer des groupes gérés"
+
