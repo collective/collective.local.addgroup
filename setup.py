@@ -28,8 +28,10 @@ setup(name='collective.local.addgroup',
           'plone.app.users > 1.0.6',  # >= 1.1 for Plone 4.1, > 1.0.6 for Plone 4.0
           'plone.app.workflow >= 2.0.2',
       ],
-      entry_points="""
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
+      extras_require = {
+          'test': [
+              'plone.app.testing',
+              'unittest2',
+          ]
+      },
       )
