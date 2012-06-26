@@ -55,6 +55,9 @@ class AddGroupInSharing(ViewletBase):
                                                        context=self.context))
         self.can_manage_groups = getSecurityManager().checkPermission(
                 'Add Groups', self.context)
+        self.delete_confirmation_msg = translate(
+                _(u"Are you sure you want to delete?"),
+                context=self.request)
 
     def content(self):
         sm = getSecurityManager()

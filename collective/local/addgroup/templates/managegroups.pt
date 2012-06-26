@@ -6,7 +6,7 @@
       i18n:domain="addgroup"
       tal:omit-tag=""
       tal:define="here_url context/absolute_url;
-                  groupicon string:${context/@@plone_portal_state/portal_url}/group.gif">
+      groupicon string:${context/@@plone_portal_state/portal_url}/group.gif;">
     <style type="text/css">
       #content #groups-list {
         margin: 0 0 0 1em;
@@ -25,15 +25,7 @@
         <tal:group
             tal:define="groupname group/getId;
                         grouplabel python:group.getProperty('title', groupname)">
-            <img tal:attributes="src groupicon"
-                 tal:condition="not:view/can_manage_groups" />
-            <a tal:condition="view/can_manage_groups"
-              tal:attributes="href string:${here_url}/@@remove-group-from-list?groupname=${groupname}">
-              <img title="Remove from managed groups" i18n:attributes="title"
-                  src="del.gif"
-                  tal:attributes="src string:${here_url}/++resource++delgroup.gif"
-                  />
-            </a>
+            <img tal:attributes="src groupicon" />
             <a tal:attributes="href string:${here_url}/@@manage-members?groupname=${groupname}">
               <tal:label condition="grouplabel"
                          content="string:$grouplabel ($groupname)" />
@@ -41,6 +33,17 @@
                          content="groupname" />
             </a>
             (<tal:num content="python:len(group.getGroupMemberIds())" />)
+            <form action="" method="POST" style="display:inline; vertical-align:middle"
+              tal:attributes="action string:${here_url}/@@remove-group-from-list?groupname=${groupname}"
+              tal:condition="view/can_manage_groups">
+              <input type="image" title="Remove from managed groups" i18n:attributes="title"
+                   onclick="return confirm('Are you sure you want to delete?')"
+                   src="del.gif"
+                   width="16" height="16"
+                   tal:attributes="src string:${here_url}/++resource++delgroup.gif;
+                   onclick string:return confirm('${view/delete_confirmation_msg}')"
+                   />
+            </form>
         </tal:group>
       </li>
     </ul>
