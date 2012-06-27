@@ -1,11 +1,12 @@
 from AccessControl import getSecurityManager
 from persistent.list import PersistentList
 
-from zope.schema.interfaces import IVocabularyFactory
-from zope.i18nmessageid import MessageFactory
-from zope.i18n import translate
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
+from zope.event import notify
+from zope.i18n import translate
+from zope.i18nmessageid import MessageFactory
+from zope.schema.interfaces import IVocabularyFactory
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import normalizeString
@@ -13,6 +14,9 @@ from Products.Five import BrowserView
 
 from plone.app.controlpanel.usergroups import GroupDetailsControlPanel
 from plone.app.layout.viewlets.common import ViewletBase
+
+from collective.local.addgroup.event import GroupRemoved
+
 
 PMF = MessageFactory('plone')
 _ = MessageFactory('addgroup')
@@ -32,6 +36,7 @@ def removeGroup(groupid, context):
     groups = annotations.get(ANNOTATION_KEY, ())
     if groupid in groups:
         groups.remove(groupid)
+        notify(GroupRemoved(context, groupid))
 
 
 def getGroupIds(context):

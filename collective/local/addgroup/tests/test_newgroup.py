@@ -1,6 +1,4 @@
 import unittest2 as unittest
-from Acquisition import aq_parent
-from Products.CMFCore.utils import getToolByName
 
 from plone.testing.z2 import Browser
 from plone.app.testing import login
@@ -10,41 +8,19 @@ from plone.app.testing.interfaces import (
     TEST_USER_NAME,
     TEST_USER_PASSWORD)
 
-from ..testing import MY_PRODUCT_INTEGRATION_TESTING
+from ..testing import MY_PRODUCT_FUNCTIONAL_TESTING
+from ..interfaces import IGroupRemoved
 
 
 class CreateNewUserTests(unittest.TestCase):
 
-    layer = MY_PRODUCT_INTEGRATION_TESTING
-
-    def setUp(self):
-        portal = self.layer['portal']
-        portal.manage_permission("Manage users",
-                roles=['Reviewer', 'Manager'], acquire=True)
-        portal.manage_permission("Add Groups",
-                roles=['Reviewer', 'Manager'], acquire=True)
-
-#        mtool = getToolByName(portal, "portal_membership")
-#        user = mtool.getMemberById(TEST_USER_ID)
-
-    def create_folder(self):
-        portal = self.layer['portal']
-        app = aq_parent(portal)
-        login(app, SITE_OWNER_NAME)
-        portal.invokeFactory('Folder', 'test-folder',
-            title="Test Folder")
-        folder = portal['test-folder']
-        folder.manage_setLocalRoles(TEST_USER_ID, ('Reviewer', ))
-        folder.reindexObjectSecurity()
-        return folder
+    layer = MY_PRODUCT_FUNCTIONAL_TESTING
 
     def test_create_new_group(self):
         app = self.layer['app']
         portal = self.layer['portal']
-        folder = self.create_folder()
-        import transaction
-        transaction.commit()
-        browser = Browser(app)
+        folder = portal['test-folder']
+        self.browser = browser = Browser(app)
         browser.handleErrors = False
         # login
         portalURL = portal.absolute_url()
@@ -62,4 +38,16 @@ class CreateNewUserTests(unittest.TestCase):
         browser.getControl(name='title:string').value = "Folder members"
         browser.getControl(name='localroles:list').value = ["Reader"]
         browser.getControl(name='form.button.Save').click()
-        self.assertIn("Folder members (folder-members)", browser.contents)
+        self.assertIn("remove-folder-members", browser.contents)
+
+    def test_remove_group(self):
+        self.test_create_new_group()
+        from zope.component import eventtesting
+        eventtesting.setUp()
+        browser = self.browser
+        browser.getControl(name="remove-folder-members").click()
+        self.assertNotIn("remove-folder-members", browser.contents)
+        self.assertIn("Folder members", browser.contents)
+        events = eventtesting.getEvents(IGroupRemoved)
+        self.assertEqual(len(events), 1)
+        eventtesting.clearEvents()

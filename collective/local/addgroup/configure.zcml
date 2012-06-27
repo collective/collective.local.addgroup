@@ -5,6 +5,6 @@
   <class class="Products.ATContentTypes.content.folder.ATFolder">
      <implements interface="collective.local.addgroup.interfaces.IAddNewGroup" />
   </class>
-<!--  <include file="addgrouptolist.zcml" /> -->
+  <include file="addgrouptolist.zcml" />
 
 </configure>

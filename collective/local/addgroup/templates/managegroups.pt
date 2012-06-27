@@ -38,10 +38,12 @@
               tal:condition="view/can_manage_groups">
               <input type="image" title="Remove from managed groups" i18n:attributes="title"
                    onclick="return confirm('Are you sure you want to delete?')"
+                   name=""
                    src="del.gif"
                    width="16" height="16"
                    tal:attributes="src string:${here_url}/++resource++delgroup.gif;
-                   onclick string:return confirm('${view/delete_confirmation_msg}')"
+                   onclick string:return confirm('${view/delete_confirmation_msg}');
+                   name string:remove-${groupname}"
                    />
             </form>
         </tal:group>
