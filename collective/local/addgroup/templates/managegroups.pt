@@ -5,6 +5,7 @@
       lang="en"
       i18n:domain="addgroup"
       tal:omit-tag=""
+      tal:condition="python: view.groups or view.can_add_groups"
       tal:define="here_url context/absolute_url;
       groupicon string:${context/@@plone_portal_state/portal_url}/group.gif;">
     <style type="text/css">
@@ -19,7 +20,8 @@
     <div id="manage-groups">
     <h2 i18n:translate="label_groups"
       i18n:domain="plone">Groups</h2>
-    <div tal:content="structure view/content|nothing" />
+    <div tal:condition="view/can_add_groups"
+         tal:content="structure view/content|nothing" />
     <ul id="groups-list">
       <li tal:repeat="group view/groups">
         <tal:group

@@ -58,17 +58,16 @@ class AddGroupInSharing(ViewletBase):
 
         self.groups.sort(key=lambda g: normalizeString(g.getProperty('title'),
                                                        context=self.context))
-        self.can_manage_groups = getSecurityManager().checkPermission(
+        sm = getSecurityManager()
+        self.can_add_groups = sm.checkPermission(
                 'Add Groups', self.context)
+        self.can_manage_groups = sm.checkPermission(
+                'Manage users', self.context)
         self.delete_confirmation_msg = translate(
                 _(u"Are you sure you want to delete?"),
                 context=self.request)
 
     def content(self):
-        sm = getSecurityManager()
-        if not sm.checkPermission('Add Groups', self.context):
-            return u""
-
         return u"""
 <script type="text/javascript">
   jQuery(document).ready(function(){

@@ -17,7 +17,7 @@ class AddGroupLayer(PloneSandboxLayer):
         portal.manage_permission("Manage users",
                 roles=['Reviewer', 'Manager'], acquire=True)
         portal.manage_permission("Add Groups",
-                roles=['Reviewer', 'Manager'], acquire=True)
+                roles=['Manager'], acquire=True)
         self.create_folder(portal)
 
     def setUpZope(self, app, configurationContext):
