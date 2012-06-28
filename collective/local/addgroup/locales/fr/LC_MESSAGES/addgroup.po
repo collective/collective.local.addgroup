@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addgroupN\n"
-"POT-Creation-Date: 2012-06-26 12:34+0000\n"
-"PO-Revision-Date: 2012-06-26 14:34+0100\n"
+"POT-Creation-Date: 2012-06-28 14:03+0000\n"
+"PO-Revision-Date: 2012-06-28 16:03+0100\n"
 "Last-Translator: Vincent Fretin <vincent.fretin@gmail.com>\n"
 "Language-Team: Vincent Fretin <vincent.fretin@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,15 @@ msgstr ""
 msgid "Add to managed groups"
 msgstr "Ajouter aux groupes gérés"
 
-#: ../__init__.py:59
+#: ../__init__.py:67
 msgid "Are you sure you want to delete?"
 msgstr "Êtes-vous sûr de vouloir supprimer ce groupe ?"
 
-#: ../templates/managegroups.pt:39
+#: ../extender.py:14
+msgid "Assign the following groups:"
+msgstr "Assigner les groupes suivants :"
+
+#: ../templates/managegroups.pt:41
 msgid "Remove from managed groups"
 msgstr "Supprimer des groupes gérés"
 

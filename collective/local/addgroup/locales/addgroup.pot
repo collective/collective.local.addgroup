@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-06-26 12:34+0000\n"
+"POT-Creation-Date: 2012-06-28 14:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,15 @@ msgstr ""
 msgid "Add to managed groups"
 msgstr ""
 
-#: ../__init__.py:59
+#: ../__init__.py:67
 msgid "Are you sure you want to delete?"
 msgstr ""
 
-#: ../templates/managegroups.pt:39
+#: ../extender.py:14
+msgid "Assign the following groups:"
+msgstr ""
+
+#: ../templates/managegroups.pt:41
 msgid "Remove from managed groups"
 msgstr ""
 

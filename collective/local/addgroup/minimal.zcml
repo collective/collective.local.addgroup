@@ -54,4 +54,15 @@
       template="templates/managemembers.pt"
       />
 
+  <utility
+      name="LocalGroups"
+      factory=".vocabulary.LocalGroupsVocabulary"
+      />
+
+  <utility
+      name="groups"
+      provides="collective.local.adduser.interfaces.IAddUserSchemaExtender"
+      factory=".extender.AddUserSchema"
+      />
+
 </configure>
