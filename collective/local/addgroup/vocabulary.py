@@ -18,7 +18,7 @@ class LocalGroupsVocabulary(object):
             group = pgroups.getGroupById(groupid)
             if group is not None:
                 terms.append(SimpleTerm(groupid, unicode(groupid),
-                    group.getProperty('title', groupid)))
+                    group.getProperty('title', groupid) or groupid))
 
         terms.sort(key=lambda x: normalizeString(x.title))
         return SimpleVocabulary(terms)
