@@ -25,9 +25,9 @@ msgstr "Êtes-vous sûr de vouloir supprimer ce groupe ?"
 
 #: ../extender.py:14
 msgid "Assign the following groups:"
-msgstr "Assigner les groupes suivants :"
+msgstr "Ajouter aux groupes suivants :"
 
 #: ../templates/managegroups.pt:41
 msgid "Remove from managed groups"
-msgstr "Supprimer des groupes gérés"
+msgstr "Retirer des groupes gérés"
 
