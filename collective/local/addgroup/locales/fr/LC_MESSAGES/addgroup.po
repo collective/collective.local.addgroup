@@ -21,7 +21,7 @@ msgstr "Ajouter aux groupes gérés"
 
 #: ../__init__.py:67
 msgid "Are you sure you want to delete?"
-msgstr "Êtes-vous sûr de vouloir supprimer ce groupe ?"
+msgstr "Êtes-vous sûr de vouloir retirer ce groupe ?"
 
 #: ../extender.py:14
 msgid "Assign the following groups:"
