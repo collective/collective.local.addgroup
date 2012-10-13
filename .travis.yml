@@ -2,7 +2,7 @@ language: python
 python:
   - 2.7
 install:
-  - python bootstrap.py
+  - python bootstrap.py -c travis.cfg -d
   - bin/buildout -Nc travis.cfg
 script:
   - bin/test
