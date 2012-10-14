@@ -9,4 +9,4 @@ script:
   - bin/test
 notifications:
   email:
-    - cedricmessiant@ecreall.com
+    - travis-reports@ecreall.com
