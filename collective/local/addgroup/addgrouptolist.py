@@ -22,7 +22,7 @@ class AddGroupToListJS(ViewletBase):
         jQuery('#user-group-sharing-settings input[name=entries.type:records][value=group]').each(function() {
             value = jQuery(this).siblings('input[name=entries.id:records]').attr('value');
             if (value != 'AuthenticatedUsers') {
-                if (jQuery("#groups-list a[href$=groupname="+value+"]").length == 0) {
+                if (jQuery("#groups-list a[href$='groupname="+value+"']").length == 0) {
                     html = '<a href="@@add-group-to-list?groupname='+value+'"><img src="'+portal_url+'/++resource++addgroup.gif" title="%s" /></a>'
                     img = jQuery(this).siblings('img');
                     jQuery(html).insertAfter(img);
