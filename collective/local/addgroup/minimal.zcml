@@ -20,7 +20,7 @@
       name="delgroup.gif"
       file="delgroup.gif"
       />
-  
+
   <browser:page
       name="add-new-group"
       for="collective.local.addgroup.interfaces.IAddNewGroup"
@@ -64,5 +64,9 @@
       provides="collective.local.adduser.interfaces.IAddUserSchemaExtender"
       factory=".extender.AddUserSchema"
       />
+
+  <configure zcml:condition="installed plone.app.dexterity">
+      <include file="dexterity.zcml" />
+  </configure>
 
 </configure>

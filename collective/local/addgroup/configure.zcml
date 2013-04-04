@@ -8,8 +8,4 @@
   </class>
   <include file="addgrouptolist.zcml" />
 
-  <configure zcml:condition="installed plone.app.dexterity">
-      <include file="dexterity.zcml" />
-  </configure>
-
 </configure>
