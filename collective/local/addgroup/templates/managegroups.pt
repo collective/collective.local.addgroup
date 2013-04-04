@@ -23,6 +23,14 @@
                 subtype: 'ajax',
                 filter: common_content_filter,
                 formselector: '#content-core form',
+                config: {
+                	onClose: function() {
+	                	var overlay = this.getOverlay();
+	                	var groupmembersnum = overlay.find('table').first().find('tr').length - 1;
+	                	var counter = jQuery('#manage-groups a[rel="#' + overlay.attr('id') + '"]').parent().find(' .groupmembers-counter');
+	                	counter.html(groupmembersnum);
+	                   }
+                }
               })
         })
     </script>
@@ -43,7 +51,8 @@
               <tal:label condition="not:grouplabel"
                          content="groupname" />
             </a>
-            (<tal:num content="python:len(group.getGroupMemberIds())" />)
+            (<span class="groupmembers-counter"
+                   tal:content="python:len(group.getGroupMemberIds())" />)
             <form action="" method="POST" style="display:inline; vertical-align:middle"
               tal:attributes="action string:${here_url}/@@remove-group-from-list?groupname=${groupname}"
               tal:condition="view/can_manage_groups">
