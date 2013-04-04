@@ -4,6 +4,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- Add group to list feature is restricted to managers only.
+  [thomasdesvenain]
+
 - Now we have a dexterity behaviour.
   [thomasdesvenain]
 

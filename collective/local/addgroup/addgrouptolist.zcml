@@ -8,12 +8,12 @@
       name="addgroup.gif"
       file="addgroup.gif"
       />
-  
+
   <browser:page
       name="add-group-to-list"
       for="collective.local.addgroup.interfaces.IAddNewGroup"
       class=".addgrouptolist.AddGroupToList"
-      permission="plone.AddGroups"
+      permission="cmf.ManagePortal"
       />
 
   <browser:viewlet
@@ -22,7 +22,7 @@
       class=".addgrouptolist.AddGroupToListJS"
       for="collective.local.addgroup.interfaces.IAddNewGroup"
       view="plone.app.workflow.browser.sharing.SharingView"
-      permission="plone.AddGroups"
+      permission="cmf.ManagePortal"
       />
 
 </configure>

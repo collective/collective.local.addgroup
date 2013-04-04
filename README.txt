@@ -27,3 +27,10 @@ If you just want this for a dexterity content type, you just have to activate th
 
 The user need to LOCALLY have the "Add Groups" permission to add a new group and
 "Manage users" to add and remove users from the listed groups.
+
+Add group to local list
+-----------------------
+
+The site manager can add groups from sharing table to locally managed groups list.
+So then the user with local permissions can manage the group himself.
+We don't give this feature to local managers to avoid privilege escalation.
