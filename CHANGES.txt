@@ -4,6 +4,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- Now we have a dexterity behaviour.
+  [thomasdesvenain]
+
 - Group management form opens in an overlay.
   [thomasdesvenain]
 

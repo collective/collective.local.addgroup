@@ -1,10 +1,7 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-06-28 14:03+0000\n"
+"POT-Creation-Date: 2013-04-04 21:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +18,23 @@ msgstr ""
 msgid "Add to managed groups"
 msgstr ""
 
+#: ../dexterity.zcml
+msgid "Adds the ability for users with Add groups and Manage Users permissions to locally add and manage groups on the content sharing page."
+msgstr ""
+
 #: ../__init__.py:67
 msgid "Are you sure you want to delete?"
 msgstr ""
 
-#: ../extender.py:14
+#: ../extender.py:15
 msgid "Assign the following groups:"
 msgstr ""
 
-#: ../templates/managegroups.pt:41
+#: ../dexterity.zcml
+msgid "Group creation delegation"
+msgstr ""
+
+#: ../templates/managegroups.pt:59
 msgid "Remove from managed groups"
 msgstr ""
 

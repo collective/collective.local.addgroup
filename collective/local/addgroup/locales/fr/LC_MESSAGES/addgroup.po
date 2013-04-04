@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addgroupN\n"
-"POT-Creation-Date: 2012-06-28 14:03+0000\n"
+"POT-Creation-Date: 2013-04-04 21:51+0000\n"
 "PO-Revision-Date: 2012-06-28 16:03+0100\n"
 "Last-Translator: Vincent Fretin <vincent.fretin@gmail.com>\n"
 "Language-Team: Vincent Fretin <vincent.fretin@gmail.com>\n"
@@ -19,15 +19,23 @@ msgstr ""
 msgid "Add to managed groups"
 msgstr "Ajouter aux groupes gérés"
 
+#: ../dexterity.zcml
+msgid "Adds the ability for users with Add groups and Manage Users permissions to locally add and manage groups on the content sharing page."
+msgstr "Ajoute la possibilité, pour les utilisateurs ayant localement les permissions \"Add groups\" et \"Manage users\", d'ajouter localement des groupes et de gérer leurs membres sur la page \"Partage\"."
+
 #: ../__init__.py:67
 msgid "Are you sure you want to delete?"
 msgstr "Êtes-vous sûr de vouloir retirer ce groupe ?"
 
-#: ../extender.py:14
+#: ../extender.py:15
 msgid "Assign the following groups:"
 msgstr "Ajouter aux groupes suivants :"
 
-#: ../templates/managegroups.pt:41
+#: ../dexterity.zcml
+msgid "Group creation delegation"
+msgstr "Délégation de la création de groupes"
+
+#: ../templates/managegroups.pt:59
 msgid "Remove from managed groups"
 msgstr "Retirer des groupes gérés"
 
