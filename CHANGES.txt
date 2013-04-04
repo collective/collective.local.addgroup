@@ -4,7 +4,7 @@ Changelog
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Works under Plone 4.3
 
 
 1.0 (2012-06-29)
