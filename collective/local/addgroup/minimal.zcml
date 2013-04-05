@@ -26,7 +26,7 @@
 
   <subscriber for="collective.local.addgroup.interfaces.IAddNewGroup
                    zope.lifecycleevent.interfaces.IObjectAddedEvent"
-              handler=".handler.create_group_at_content_creation" />
+              handler=".handler.create_groups_at_content_creation" />
 
   <utility
       name="LocalGroups"
@@ -44,5 +44,7 @@
   </configure>
 
   <include file="addgrouptolist.zcml" />
+  <adapter for="*"
+           factory=".policy.DefaultLocalGroupPolicy" />
 
 </configure>

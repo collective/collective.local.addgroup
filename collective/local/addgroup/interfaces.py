@@ -22,3 +22,15 @@ class IAddNewGroupSettings(Interface):
 
     add_new_group_at_creation = schema.Bool(
         title=_("Each time a content with local group management is created, creates a group and links it to this new content"))
+
+
+class IDefaultLocalGroupPolicy(Interface):
+    """Policy to customize default group(s) creation policy
+    """
+
+    def get_group_infos(self):
+        """Return a dictionary with:
+            id: group id,
+            properties: group properties (title, etc.),
+            local_roles: group local roles
+        """
