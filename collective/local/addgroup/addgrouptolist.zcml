@@ -6,20 +6,20 @@
 
   <browser:resource
       name="addgroup.gif"
-      file="addgroup.gif"
+      file="browser/addgroup.gif"
       />
 
   <browser:page
       name="add-group-to-list"
       for="collective.local.addgroup.interfaces.IAddNewGroup"
-      class=".addgrouptolist.AddGroupToList"
+      class=".browser.groups.AddGroupToList"
       permission="cmf.ManagePortal"
       />
 
   <browser:viewlet
       name="plone.addgrouptolistjs"
       manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-      class=".addgrouptolist.AddGroupToListJS"
+      class=".browser.groups.AddGroupToListJS"
       for="collective.local.addgroup.interfaces.IAddNewGroup"
       view="plone.app.workflow.browser.sharing.SharingView"
       permission="cmf.ManagePortal"

@@ -4,7 +4,7 @@ from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import normalizeString
 
-from collective.local.addgroup import getGroupIds
+from collective.local.addgroup import api
 
 
 class LocalGroupsVocabulary(object):
@@ -14,7 +14,7 @@ class LocalGroupsVocabulary(object):
         pgroups = getToolByName(context, 'portal_groups')
         terms = []
 
-        for groupid in getGroupIds(context):
+        for groupid in api.getGroupIds(context):
             group = pgroups.getGroupById(groupid)
             if group is not None:
                 terms.append(SimpleTerm(groupid, unicode(groupid),

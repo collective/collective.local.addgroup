@@ -4,7 +4,7 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added a controlpanel option to automatically create a group at content creation.
 
 
 1.1 (2013-04-05)
