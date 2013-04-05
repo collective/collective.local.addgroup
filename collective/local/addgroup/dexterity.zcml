@@ -10,4 +10,10 @@
       provides=".interfaces.IAddNewGroup"
       />
 
+  <plone:behavior
+      title="Creates a delegated group at content creation"
+      description="Automatically creates a group attached to the content when the content is created."
+      provides=".interfaces.IAddNewGroupAtCreation"
+      />
+
 </configure>

@@ -13,3 +13,8 @@ class IGroupRemoved(IObjectEvent):
     """
 
     groupid = schema.TextLine(title=u"Group id")
+
+
+class IAddNewGroupAtCreation(Interface):
+    """Automatically creates a group attached to the content when the content is created.
+    """
