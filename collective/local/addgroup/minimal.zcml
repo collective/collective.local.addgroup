@@ -7,6 +7,7 @@
   <i18n:registerTranslations directory="locales" />
 
   <include package="plone.app.controlpanel" />
+  <include package="plone.app.registry" />
   <include package="collective.local.adduser" />
 
   <permission
@@ -25,7 +26,7 @@
       />
 
   <subscriber for="collective.local.addgroup.interfaces.IAddNewGroup
-                   zope.lifecycleevent.interfaces.IObjectAddedEvent"
+                   zope.lifecycleevent.interfaces.IObjectMovedEvent"
               handler=".handler.create_groups_at_content_creation" />
 
   <utility

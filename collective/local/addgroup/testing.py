@@ -18,11 +18,13 @@ class AddGroupLayer(PloneSandboxLayer):
                 roles=['Reviewer', 'Manager'], acquire=True)
         portal.manage_permission("Add Groups",
                 roles=['Manager'], acquire=True)
+        self.applyProfile(portal, 'collective.local.addgroup:default')
         self.create_folder(portal)
 
     def setUpZope(self, app, configurationContext):
         import collective.local.addgroup
-        xmlconfig.file('configure.zcml', collective.local.addgroup, context=configurationContext)
+        xmlconfig.file('configure.zcml', collective.local.addgroup,
+                       context=configurationContext)
 
     def create_folder(self, portal):
         app = aq_parent(portal)
@@ -36,5 +38,6 @@ class AddGroupLayer(PloneSandboxLayer):
 
 
 MY_PRODUCT_FIXTURE = AddGroupLayer()
-MY_PRODUCT_INTEGRATION_TESTING = IntegrationTesting(bases=(MY_PRODUCT_FIXTURE,), name="AddGroupLayer:Integration")
+MY_PRODUCT_INTEGRATION_TESTING = IntegrationTesting(bases=(MY_PRODUCT_FIXTURE,),
+                                                    name="AddGroupLayer:Integration")
 MY_PRODUCT_FUNCTIONAL_TESTING = FunctionalTesting(bases=(MY_PRODUCT_FIXTURE,), name="AddGroupLayer:Functional")

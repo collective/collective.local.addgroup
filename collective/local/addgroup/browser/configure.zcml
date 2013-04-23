@@ -1,0 +1,53 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="addgroup">
+
+  <browser:resource
+      name="delgroup.gif"
+      file="delgroup.gif"
+      />
+
+  <browser:page
+      name="add-new-group"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      class=".groups.AddGroupForm"
+      permission="plone.AddGroups"
+      template="templates/usergroups_groupdetails.pt"
+      />
+
+  <browser:page
+      name="remove-group-from-list"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      class=".groups.RemoveGroupFromList"
+      permission="plone.AddGroups"
+      />
+
+  <browser:viewlet
+      name="plone.addgroupinsharing"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".groups.AddGroupInSharing"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      view="plone.app.workflow.browser.sharing.SharingView"
+      permission="zope2.ManageUsers"
+      template="templates/managegroups.pt"
+      />
+
+  <browser:page
+      name="manage-members"
+      for="collective.local.addgroup.interfaces.IAddNewGroup"
+      class=".members.ManageMembers"
+      permission="zope2.ManageUsers"
+      template="templates/managemembers.pt"
+      />
+
+  <browser:page
+      name="addgroup-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.AddNewGroupSettingsControlPanel"
+      permission="cmf.ManagePortal"
+      />
+
+</configure>

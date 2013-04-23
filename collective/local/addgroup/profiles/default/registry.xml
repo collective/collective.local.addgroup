@@ -1,0 +1,12 @@
+<registry>
+  <record interface="collective.local.addgroup.interfaces.IAddNewGroupSettings"
+          name="collective.local.addgroup.interfaces.IAddNewGroupSettings.add_new_group_at_creation">
+    <field type="plone.registry.field.Bool">
+      <description>Add a new group at each IAddNewGroup content creation</description>
+      <value_type type="plone.registry.field.Bool">
+        <default>False</default>
+        <title></title>
+      </value_type>
+    </field>
+  </record>
+</registry>
