@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-04 21:51+0000\n"
+"POT-Creation-Date: 2013-07-05 09:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,12 @@ msgstr ""
 msgid "Group creation delegation"
 msgstr ""
 
-#: ../templates/managegroups.pt:59
+#: ../templates/managegroups.pt:58
 msgid "Remove from managed groups"
+msgstr ""
+
+#. Default: "No group has been created yet for this folder."
+#: ../templates/managegroups.pt:71
+msgid "msg_nogroup"
 msgstr ""
 

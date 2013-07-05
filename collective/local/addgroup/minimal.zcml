@@ -7,7 +7,7 @@
   <i18n:registerTranslations directory="locales" />
 
   <include package="plone.app.controlpanel" />
-  <include package="collective.local.adduser" />
+  <include package="collective.local.adduser" file="minimal.zcml" />
 
   <!-- permissions defined in Products/PlonePAS/permissions.py -->
 

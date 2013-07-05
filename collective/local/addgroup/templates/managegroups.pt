@@ -34,13 +34,12 @@
               })
         })
     </script>
-    <div id="manage-groups">
+    <div id="manage-groups" tal:define="groups view/groups"
+         tal:attributes="class python:len(groups) == 0 and 'no-group' or 'groups'">
     <h2 i18n:translate="label_groups"
       i18n:domain="plone">Groups</h2>
-    <div tal:condition="view/can_add_groups"
-         tal:content="structure view/content|nothing" />
     <ul id="groups-list">
-      <li tal:repeat="group view/groups">
+      <li tal:repeat="group groups">
         <tal:group
             tal:define="groupname group/getId;
                         grouplabel python:group.getProperty('title', groupname)">
@@ -69,6 +68,10 @@
         </tal:group>
       </li>
     </ul>
+    <p class="discreet" tal:condition="not:groups" id="msg-no-group"
+       i18n:translate="msg_nogroup">No group has been created yet for this folder.</p>
+    <div tal:condition="view/can_add_groups"
+         tal:content="structure view/content|nothing" />
   </div>
 
 </html>

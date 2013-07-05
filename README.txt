@@ -34,3 +34,9 @@ Add group to local list
 The site manager can add groups from sharing table to locally managed groups list.
 So then the user with local permissions can manage the group himself.
 We don't give this feature to local managers to avoid privilege escalation.
+
+Contributors
+------------
+
+- Vincent Fretin, vincent.fretin@gmail.com
+- Thomas Desvenain, thomas.desvenain@gmail.com

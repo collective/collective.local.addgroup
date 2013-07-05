@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addgroupN\n"
-"POT-Creation-Date: 2013-04-04 21:51+0000\n"
+"POT-Creation-Date: 2013-07-05 09:42+0000\n"
 "PO-Revision-Date: 2012-06-28 16:03+0100\n"
 "Last-Translator: Vincent Fretin <vincent.fretin@gmail.com>\n"
 "Language-Team: Vincent Fretin <vincent.fretin@gmail.com>\n"
@@ -35,7 +35,12 @@ msgstr "Ajouter aux groupes suivants :"
 msgid "Group creation delegation"
 msgstr "Délégation de la création de groupes"
 
-#: ../templates/managegroups.pt:59
+#: ../templates/managegroups.pt:58
 msgid "Remove from managed groups"
 msgstr "Retirer des groupes gérés"
+
+#. Default: "No group has been created yet for this folder."
+#: ../templates/managegroups.pt:71
+msgid "msg_nogroup"
+msgstr "Aucun groupe n'a encore été créé pour ce dossier."
 
