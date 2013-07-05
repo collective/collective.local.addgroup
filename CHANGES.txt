@@ -4,6 +4,10 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Just include 'minimal' zcml configuration of collective.local.adduser
+  if we have just included 'minimal' zcml of collective.local.addgroup.
+  [thomasdesvenain]
+
 - Added a message and a class on groups section in sharing page
   if there is no group.
   [thomasdesvenain]
