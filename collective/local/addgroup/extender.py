@@ -6,7 +6,7 @@ from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from Products.CMFCore.utils import getToolByName
 
 from collective.local.adduser.interfaces import IAddUserSchemaExtender
-from collective.local.addgroup import _
+from collective.local.addgroup import _, getGroupIds
 
 
 class IAddUserSchema(Interface):
@@ -22,7 +22,10 @@ class AddUserSchema(object):
     implements(IAddUserSchemaExtender)
     order = 20
 
-    def add_fields(self, fields):
+    def add_fields(self, fields, context=None):
+        if context and len(getGroupIds(context)) == 0:
+            return fields
+
         fields += form.Fields(IAddUserSchema)
         fields['groups'].custom_widget = MultiCheckBoxVocabularyWidget
         return fields

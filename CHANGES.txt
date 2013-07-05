@@ -4,8 +4,13 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Do not provide group selection field on 'Add user' form
+  if there is no group assigned to this folder.
+  [thomasdesvenain]
+
 - Just include 'minimal' zcml configuration of collective.local.adduser
   if we have just included 'minimal' zcml of collective.local.addgroup.
+  So we can use addgroup features without having adduser everywhere.
   [thomasdesvenain]
 
 - Added a message and a class on groups section in sharing page
