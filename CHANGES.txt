@@ -17,6 +17,7 @@ Changelog
   if there is no group.
   [thomasdesvenain]
 
+
 1.1 (2013-04-05)
 ----------------
 
