@@ -28,12 +28,15 @@ class AddUserSchema(object):
 
         fields += form.Fields(IAddUserSchema)
         fields['groups'].custom_widget = MultiCheckBoxVocabularyWidget
+            
         return fields
 
     def handle_data(self, data, context, request):
         pgroups = getToolByName(context, "portal_groups")
         userid = data['username']
-        groupids = data['groups']
-        for groupid in groupids:
-            # you need ManageGroups to use this.
-            pgroups.addPrincipalToGroup(userid, groupid)
+        
+        if 'groups' in data:
+            groupids = data['groups']
+            for groupid in groupids:
+                # you need ManageGroups to use this.
+                pgroups.addPrincipalToGroup(userid, groupid)
