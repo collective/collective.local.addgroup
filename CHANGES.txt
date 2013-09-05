@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.3 (unreleased)
-----------------
+1.2.1 (2013-09-05)
+------------------
 
 - Fix local add user form if there is no group assigned to this folder.
   [thomasdesvenain]
